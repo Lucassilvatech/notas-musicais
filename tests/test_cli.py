@@ -39,3 +39,15 @@ def test_acorde_cli_deve_conter_todos_os_graus(grau):
 def test_acorde_cli_deve_conter_as_notas_na_resposta(nota):
     resultado = runner.invoke(app, ['acorde'])
     assert nota in resultado.stdout
+
+
+@mark.parametrize('grau', ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'])
+def test_campo_harmonico_cli_deve_conter_todos_os_graus(grau):
+    resultado = runner.invoke(app, ['campo-harmonico', 'C'])
+    assert grau in resultado.stdout
+
+
+@mark.parametrize('cifra', ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'B°'])
+def test_campo_harmonico_cli_deve_conter_todas_as_cifras(cifra):
+    resultado = runner.invoke(app, ['campo-harmonico', 'C'])
+    assert cifra in resultado.stdout
